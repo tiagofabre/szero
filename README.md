@@ -18,12 +18,12 @@ Sub Zero dependency search.
 | Engines:        | Node.js 4.x, 5.x, 6.x |
 
 ## Installation
-``` sh
+``` bash
 npm install szero -g
 ```
 ## Usage
 
-``` sh
+``` bash
 $ szero /path_to/project  (or use '.' for current directory)
 $ szero .
 $ szero . --license (add license info to the output)
@@ -43,7 +43,7 @@ $ szero . --silent (omits the output of information in the console)
 ![a.png](https://raw.githubusercontent.com/bucharest-gold/szero/master/a.png)
 
 The default output is to the console, but you can specify a "reporter" of file to also output the results to a file called szero.txt
-``` sh
+``` bash
 $szero /path_to/myproject --file
 ```
 To change the filename that is outputted, use the `--filename` option.
@@ -54,7 +54,7 @@ To change the filename that is outputted, use the `--filename` option.
 
 To use the `szero` api in code, first install it locally
 
-``` sh
+``` bash
     $ npm install szero --save
 ```
 
