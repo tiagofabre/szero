@@ -13,7 +13,6 @@ module.exports = function run (directory, options) {
       packageJson = reader.getFileLines(`${directory}/package.json`);
     } catch (e) {
       const error = 'package.json is require';
-      log.red(error);
       return reject(error);
     }
     const dependencies = searcher.searchDependencies(packageJson, options.dev);
@@ -22,7 +21,9 @@ module.exports = function run (directory, options) {
     const missingDependencies = new Set();
     const requires = new Set();
     files.forEach(file => {
+      const strippedLines = reader.getFileLines(file, {removeComments: true});
       const lines = reader.getFileLines(file);
+
       if (options.summary) {
         const missing = searcher.searchMissingDependencies(lines, dependencies);
         if (missing.length) {
@@ -30,9 +31,10 @@ module.exports = function run (directory, options) {
         }
       }
       const declarations = searcher.searchDeclarations(lines, dependencies[0]);
-      const require = searcher.searchRequires(lines);
+      const require = searcher.searchRequires(strippedLines);
       if (require.length) {
         require.forEach(r => {
+          console.log('log require:', r);
           let m = null;
           if (r.includes('"')) {
             m = r.split('"')[1];

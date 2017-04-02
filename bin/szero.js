@@ -2,6 +2,7 @@
 
 const run = require('./cli');
 const program = require('commander');
+const log = require('../lib/log-color');
 
 program
   .version(require('../package.json').version)
@@ -50,4 +51,6 @@ if (program.summary) {
   options.summary = true;
 }
 
-run(program.args[0], options);
+run(program.args[0], options).catch((error) => {
+  log.red(error);
+});
